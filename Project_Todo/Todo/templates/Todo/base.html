@@ -10,26 +10,45 @@
 </head>
 <body>
       <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">  TO-DO app</a>
+        <a class="navbar-brand ms-5 fw-bold fs-3" href="#"> DOLIFY</a>
       </nav>
-      <div class= 'container mt-4'>
+      <div class= 'container-sm mt-4'>
         {%block content%}
-        <h2>Add Item</h2>
+        <h2>Add Tasks</h2>
         <p></p>
-        <input type="text"  class="form-control" placeholder="Enter new task">
-        <p></p>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <form action= 'add/' method= 'post'>
+             {%csrf_token%}
+            <input type="text"  class="form-control" name ='content' placeholder="Enter new task">
+            <p></p>
+            <button type="submit" class="btn btn-primary">Add task</button>
+        </form>
         {%endblock content%}
         <p></p>
         <div class= 'row'>
             <div class= 'col'>
                 <ul class="list-group">
-                    <li class="list-group-item active" aria-current="true">An active item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
+                    {%for todo_item in todo_items%}
+                    <div class="input-group mb-3">
+                        <div class="input-group-text">
+                          <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+                        </div>
+                        <li class="list-group-item" >
+                    
+                            {{todo_item.task}}
+                           <div class="float-end"> 
+                           <form action="delete_task/{{todo_item.id}}/" method="post">
+                               {%csrf_token%}
+                               <button type="submit" class="btn btn-sm btn-primary btn-danger ms-5 ">Delete Task</button>
+                            </form>
+                            </div>   
+                        </li>
+                    </div>
+                  
+                   
+                    
+                    {%endfor%}
                   </ul>
+                
             </div>
         </div>
       </div>
