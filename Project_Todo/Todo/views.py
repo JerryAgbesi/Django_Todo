@@ -2,8 +2,10 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponseRedirect
 from django.utils import timezone
 from Todo.models import Todo
+# from django import 
 
 # Create your views here.
+
 def home(request):
 
     tasks = Todo.objects.all().order_by('-date_added')
