@@ -2,15 +2,15 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponseRedirect
 from django.utils import timezone
 from Todo.models import Todo
+from django.contrib.auth.decorators import login_required
 # from django import 
 
 # Create your views here.
 
+@login_required(login_url='login')
 def home(request):
 
     tasks = Todo.objects.all().order_by('-date_added')
-
-
     return(render(request,'Todo/base.html',{'todo_items':tasks}))
 
 def add_todo(request):

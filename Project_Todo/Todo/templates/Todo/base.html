@@ -11,6 +11,8 @@
 <body>
       <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand ms-5 fw-bold fs-3" href="#"> DOLIFY</a>
+        <span class="hello-msg">Hello, {{request.user}} </span>
+        <span class="hello-msg"><a href="{%url 'logout'%}">logout</a></span>
       </nav>
       <div class= 'container-sm mt-4'>
         {%block content%}
@@ -53,4 +55,15 @@
         </div>
       </div>
 </body>
+
+<style>
+  .hello-msg{
+    color: antiquewhite;
+    font-size: large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: right;
+    margin: 10px;
+  }
+</style>
+
 </html>
