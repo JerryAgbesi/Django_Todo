@@ -24,7 +24,7 @@ def register(request):
         
 
     context = {'form':form}        
-    return(render(request,'Users/register.html',context,))
+    return(render(request,'accounts/register.html',context,))
 
 def loginPage(request):
     if request.method == 'POST':
@@ -43,7 +43,7 @@ def loginPage(request):
 
     context = {}
 
-    return (render(request,'Users/login.html',context))
+    return (render(request,'accounts/login.html',context))
 
 def logoutUser(request):
     logout(request)
