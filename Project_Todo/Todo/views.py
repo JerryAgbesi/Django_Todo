@@ -4,8 +4,7 @@ from django.utils import timezone
 from Todo.models import Todo
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
-from .models import TodoItem
-# from django import 
+
 
 # Create your views here.
 
@@ -21,9 +20,10 @@ def add_todo(request):
     content = request.POST['content']
 
     if content:
-        new_item = TodoItem(content=content,currentUser = request.user)
-        Todo.objects.create(date_added = current_date, task= content ,currentUser=request.user)
-
+        # new_item = TodoItem(content=content,currentUser = request.user)
+        #saving each new task created
+        Todo.objects.create(date_added = current_date, task= content ,currenUser = request.user )
+       
     return HttpResponseRedirect('/')
 
 @login_required(login_url='login')
@@ -33,9 +33,9 @@ def delete_todo(request,todo_id):
 
 
 class ItemListView(ListView):
-    model = TodoItem
+    model = Todo
     template_name = "Todo/base.html" 
     context_object_name = "todo_items"
 
     def get_queryset(self):
-        return TodoItem.objects.filter(currentUser=self.request.user)       
+        return Todo.objects.filter(currentUser=self.request.user)       
